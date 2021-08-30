@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-3"> Image Verification</h1>
+        <p class="lead">  Identification is captured, analyzed and verified, then only allowed to
+      login.</p>
+        <hr class="my-2" />
+        <p></p>
+        <p class="lead">
+          <ul class="feature-list mt-4">
+      <li style="font-size: large;">Advanced facial detection technology</li>
+      <li style="font-size: large">Automated Verification</li>
+      <li style="font-size: large" >Live Image Verification</li>
+    </ul>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="col-md-6 order-md-2 offset-lg-1">
+      <img style="width: 500px; height: 400px;" class="mb-3 mt-3" src="{% static 'id-verification.png' %}" alt="" />
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a href="javascript:{document.getElementById('webcam').submit()}" class="btn btn-primary col-md-12"
+                                >                         
+                                 <img class="img-fluid" style="height: 70px; width: 70px;" src="{% static 'webcam.gif' %}" alt=""> Connect To WEBCAM
+                                </a>
+                               
+    </div>
+</div>
+
+<div class="container">
+  <div class="row">
+ 
+    <div class="col-md-12" style="margin-top: 140px;">
+    <h1>{% include 'partial/_alerts.html' %}</h1>
+    </div>
+  </div>
+</div>
+
+<form action="{% url 'student_auth' %}"method="POST" id="webcam" >
+ {% csrf_token %}
+  <input type="hidden" />
+  </form>
+{% endblock%}

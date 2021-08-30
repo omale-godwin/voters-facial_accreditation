@@ -1,0 +1,65 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div style="text-align: center" class="container">
+    <h1 class="display-3">
+      <strong class="text-success">Successfully Authenticate </strong> <br />
+    </h1>
+    <h2 style="text-align: center">
+      {{ Auth_user.fullname }} Elegible For Voting
+    </h2>
+    <p class="lead">Reg Number: {{ Auth_user.reg_number}}</p>
+    <hr class="my-2" />
+
+    <p class="lead">
+      <a
+        href="javascript:{document.getElementById('comfirm').submit()}"
+        class="btn btn-primary col-md-12"
+      >
+        Connect Elegibility
+      </a>
+    </p>
+  </div>
+</div>
+<div class="">
+  <div class="row">
+    <div class="col-md-4">
+      <img
+        style="width: 400px; height: 400px"
+        class="img-fluid"
+        src="{{ Auth_user.imag.url }}"
+        alt=""
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="">
+        <br />
+        <br />
+        <br />
+        {% if Auth_user.confirm %}
+        <div class="jumbotron" style="text-align: center; color: red">
+          <h1 class="display-4">
+            {{ Auth_user.fullname }} Can Not Vote More Than once
+          </h1>
+
+          <hr class="my-4" />
+          <p>Not Eligible To Vote</p>
+        </div>
+        {% else %}
+        <div class="jumbotron" style="text-align: center; color: #63c5aa">
+          <h1 class="display-4">
+            {{ Auth_user.fullname }} Can Procceed To Vote
+          </h1>
+
+          <hr class="my-4" />
+          <p>Eligible To Vote</p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<form action="{% url 'success_auth' %}" method="POST" id="comfirm">
+  {% csrf_token %}
+  <input type="hidden" />
+</form>
+{% endblock%}

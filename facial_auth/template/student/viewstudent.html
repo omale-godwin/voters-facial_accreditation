@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="contacts-area mg-b-15">
+  <div class="container-fluid">
+    <div class="row">
+      {% if students %} {% for student in students %}
+      <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="student-inner-std res-mg-b-30">
+          {{ student.phone }}
+          <div class="student-img">
+            <img
+              style="height: 250px; width: 250px"
+              src="{{ student.imag.url }}"
+              alt="something"
+            />
+          </div>
+          <div class="student-dtl">
+            <h2>{{ student.fulname }}</h2>
+            <p class="dp">{{ student.department }}</p>
+            <p class="dp-ag"><b>Reg Number :</b> {{ student.reg_number}}</p>
+          </div>
+        </div>
+      </div>
+      <br />
+      {% endfor %} {% else %}
+      <div style="text-align: center">No STUDENT AVAILABLE IN THE DATABASE</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock%}
