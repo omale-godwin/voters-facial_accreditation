@@ -4,6 +4,7 @@ import shutil
 from django.http import request
 from django.shortcuts import redirect, render
 from datetime import datetime
+from django.contrib import messages
 from django.conf import settings 
 from numpy.lib.type_check import imag
 from .models import Student
@@ -38,15 +39,10 @@ def addstudent(request):
         dst_dir = os.getcwd() + '/media/photos'
         shutil.copy(src_dir, dst_dir )
         os.remove(src_dir)
-        
-        
-     
-
         save_data = Student(fullname=fullname, imag=myfile,  reg_number=reg_number, phone=phone, address=address, dob=dob, emailA=emailA, description=description, department=department, gender=gender, states=states, contry=contry, local_government=local_government, postcode=postcode)
         save_data.save()
-
-
-  
+        messages.success(request, 'YOU HAVE SUCCESSFULLY ADDED A STUDENT')
+        return redirect('viewstudent')    
         
 
     return render(request, 'student/addstudent.html')
@@ -66,6 +62,6 @@ def viewstudent(request):
     return render(request, 'student/viewstudent.html', context)
 
 def webcam(request):
-    run([sys.executable, '//home//omale//Desktop//deepface/faces.py'], shell=False)
+    run([sys.executable, os.getcwd() + '/fac.py'], shell=False)
     print('omaleeeeeeeeeeeeeeeeeeeeee')
     return redirect('addstudent')

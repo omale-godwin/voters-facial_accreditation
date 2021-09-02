@@ -146,6 +146,16 @@
                       <span class="mini-sub-pro">Accredate Voter</span></a
                     >
                   </li>
+                  <li>
+                <a  href="javascript:{document.getElementById('logout').submit()}">
+                    <span class="educate-icon educate-key icon-wrap"></span>
+                  Logout
+                </a>
+                <form action="{% url 'logout' %}" method="POST" id="logout">
+                  {% csrf_token %}
+                  <input type="hidden">
+                </form>
+              </li>
            
         
          
@@ -395,7 +405,18 @@
                         ></a> <li><a href="all-students.html">add Students</a></li>
                        
                      
-                 
+                     
+                     
+                  <li>
+                <a  href="javascript:{document.getElementById('logout').submit()}">
+                  
+                  Logout
+                </a>
+                <form action="{% url 'logout' %}" method="POST" id="logout">
+                  {% csrf_token %}
+                  <input type="hidden">
+                </form>
+              </li>
                     </ul>
                   </nav>
                 </div>

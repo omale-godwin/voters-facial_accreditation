@@ -10,14 +10,14 @@
     <p class="lead">Reg Number: {{ Auth_user.reg_number}}</p>
     <hr class="my-2" />
 
-    <p class="lead">
+    <h2>
       <a
         href="javascript:{document.getElementById('comfirm').submit()}"
         class="btn btn-primary col-md-12"
       >
         HAS {{ Auth_user.fullname }} VOTE
       </a>
-    </p>
+    </h2>
   </div>
 </div>
 <div class="">
@@ -58,7 +58,7 @@
     </div>
   </div>
 </div>
-<form action="{% url 'success_auth' %}" method="POST" id="comfirm">
+<form action="{% url 'conf' %}" method="POST" id="comfirm">
   {% csrf_token %}
   <input type="hidden" />
 </form>
